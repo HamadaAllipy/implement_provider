@@ -14,6 +14,8 @@ class _TestOneState extends State<TestOne> {
 
   @override
   Widget build(BuildContext context) {
+    print('provider of context');
+    var model = Provider.of<Model>(context);
     return Scaffold(
       appBar: AppBar(
         title: const Text('provider'),
@@ -22,10 +24,10 @@ class _TestOneState extends State<TestOne> {
         children: [
           Center(
             child: Selector<Model, String>(
-              selector: (context, provS1){
+              selector: (context, provS1) {
                 return provS1.getName;
               },
-              builder: (context, name, child){
+              builder: (context, name, child) {
                 print('REBUILD');
                 return Text(
                   name,
@@ -39,7 +41,7 @@ class _TestOneState extends State<TestOne> {
           ),
           Center(
             child: Selector<Model, int>(
-              selector: (_, provS2)=> provS2.age,
+              selector: (_, provS2) => provS2.age,
               builder: (BuildContext context, age, Widget? child) {
                 print('REBUILD');
                 return Text(
@@ -52,23 +54,19 @@ class _TestOneState extends State<TestOne> {
           const SizedBox(
             height: 10,
           ),
-          Consumer<Model>(
-            builder: (_, model, child){
-              return MaterialButton(
-                onPressed: () {
-                  model.changeName();
-                },
-                color: Colors.blue,
-                textColor: Colors.white,
-                child: const Text('Change Name'),
-              );
+          MaterialButton(
+            onPressed: () {
+              model.changeName();
             },
+            color: Colors.blue,
+            textColor: Colors.white,
+            child: const Text('Change Name'),
           ),
           const SizedBox(
             height: 10,
           ),
           Consumer<Model>(
-            builder: (_, model, child){
+            builder: (_, model, child) {
               return MaterialButton(
                 onPressed: () {
                   model.changeAge();

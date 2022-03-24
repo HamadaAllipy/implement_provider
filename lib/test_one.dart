@@ -16,7 +16,7 @@ class _TestOneState extends State<TestOne> {
   Widget build(BuildContext context) {
     print('provider of context');
     // var model = Provider.of<Model>(context);
-    var model = Provider.of<Model>(context, listen: false);
+    // var model = Provider.of<Model>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('provider'),
@@ -24,17 +24,9 @@ class _TestOneState extends State<TestOne> {
       body: Column(
         children: [
           Center(
-            child: Selector<Model, String>(
-              selector: (context, provS1) {
-                return provS1.getName;
-              },
-              builder: (context, name, child) {
-                print('REBUILD');
-                return Text(
-                  name,
-                  style: const TextStyle(fontSize: 20),
-                );
-              },
+            child: Text(
+              context.watch<Model>().getName,
+              style: const TextStyle(fontSize: 20),
             ),
           ),
           const SizedBox(
@@ -57,7 +49,8 @@ class _TestOneState extends State<TestOne> {
           ),
           MaterialButton(
             onPressed: () {
-              model.changeName();
+              context.read<Model>().changeName();
+              // model.changeName();
             },
             color: Colors.blue,
             textColor: Colors.white,

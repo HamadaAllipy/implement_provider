@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:providerr/example/presentation/product_screen.dart';
+import 'package:providerr/example/provider/product_provider.dart';
 import 'package:providerr/providers/model.dart';
 import 'package:providerr/providers/provider_three.dart';
 import 'package:providerr/providers/provider_two.dart';
@@ -14,21 +16,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (context) => Model(),
-        ),
-        ChangeNotifierProvider(
-          create: (context) => ProviderTwo(),
-        ),
-        Provider(
-          create: (context) => ProviderThree(),
-        ),
-      ],
+    return ChangeNotifierProvider(
+      create: (_)=>ProductProvider(),
       child: const MaterialApp(
         debugShowCheckedModeBanner: false,
-        home: TestOne(),
+        home: ProductScreen(),
       ),
     );
   }

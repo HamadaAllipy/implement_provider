@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:providerr/model.dart';
+import 'package:providerr/providers/model.dart';
+import 'package:providerr/providers/provider_three.dart';
+import 'package:providerr/providers/provider_two.dart';
 
-class TestOne extends StatefulWidget {
+class TestOne extends StatelessWidget {
   const TestOne({Key? key}) : super(key: key);
 
   @override
-  State<TestOne> createState() => _TestOneState();
-}
-
-class _TestOneState extends State<TestOne> {
-  String name = 'Welcome';
-
-  @override
   Widget build(BuildContext context) {
-    print('provider of context');
-    // var model = Provider.of<Model>(context);
-    // var model = Provider.of<Model>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('provider'),
@@ -24,21 +16,36 @@ class _TestOneState extends State<TestOne> {
       body: Column(
         children: [
           Center(
-            child: Text(
-              context.watch<Model>().getName,
-              style: const TextStyle(fontSize: 20),
+            child: Consumer<Model>(
+              builder: (BuildContext context, model, Widget? child) {
+                return Text(
+                  model.getName,
+                  style: const TextStyle(fontSize: 20),
+                );
+              },
             ),
           ),
           const SizedBox(
             height: 10,
           ),
           Center(
-            child: Selector<Model, int>(
-              selector: (_, provS2) => provS2.age,
-              builder: (BuildContext context, age, Widget? child) {
-                print('REBUILD');
+            child: Consumer<ProviderTwo>(
+              builder: (BuildContext context, two, Widget? child) {
                 return Text(
-                  age.toString(),
+                  two.toString(),
+                  style: const TextStyle(fontSize: 20),
+                );
+              },
+            ),
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          Center(
+            child: Consumer<ProviderThree>(
+              builder: (BuildContext context, two, Widget? child) {
+                return Text(
+                  two.counter.toString(),
                   style: const TextStyle(fontSize: 20),
                 );
               },
@@ -70,6 +77,17 @@ class _TestOneState extends State<TestOne> {
                 child: const Text('Change Age'),
               );
             },
+          ),
+          const SizedBox(
+            height: 10,
+          ),
+          MaterialButton(
+            onPressed: () {
+              context.read<ProviderThree>().printConsole();
+            },
+            color: Colors.blue,
+            textColor: Colors.white,
+            child: const Text('Change console'),
           ),
         ],
       ),

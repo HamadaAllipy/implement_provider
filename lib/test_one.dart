@@ -15,7 +15,8 @@ class _TestOneState extends State<TestOne> {
   @override
   Widget build(BuildContext context) {
     print('provider of context');
-    var model = Provider.of<Model>(context);
+    // var model = Provider.of<Model>(context);
+    var model = Provider.of<Model>(context, listen: false);
     return Scaffold(
       appBar: AppBar(
         title: const Text('provider'),

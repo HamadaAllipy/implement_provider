@@ -21,11 +21,14 @@ class _TestOneState extends State<TestOne> {
       body: Column(
         children: [
           Center(
-            child: Consumer<Model>(
-              builder: (context, model, child){
+            child: Selector<Model, String>(
+              selector: (context, provS1){
+                return provS1.getName;
+              },
+              builder: (context, name, child){
                 print('REBUILD');
                 return Text(
-                  model.name,
+                  name,
                   style: const TextStyle(fontSize: 20),
                 );
               },
@@ -35,11 +38,12 @@ class _TestOneState extends State<TestOne> {
             height: 10,
           ),
           Center(
-            child: Consumer<Model>(
-              builder: (BuildContext context, model, Widget? child) {
+            child: Selector<Model, int>(
+              selector: (_, provS2)=> provS2.age,
+              builder: (BuildContext context, age, Widget? child) {
                 print('REBUILD');
                 return Text(
-                  model.age.toString(),
+                  age.toString(),
                   style: const TextStyle(fontSize: 20),
                 );
               },
@@ -50,7 +54,6 @@ class _TestOneState extends State<TestOne> {
           ),
           Consumer<Model>(
             builder: (_, model, child){
-              print('REBUILD');
               return MaterialButton(
                 onPressed: () {
                   model.changeName();
@@ -66,7 +69,6 @@ class _TestOneState extends State<TestOne> {
           ),
           Consumer<Model>(
             builder: (_, model, child){
-              print('REBUILD');
               return MaterialButton(
                 onPressed: () {
                   model.changeAge();

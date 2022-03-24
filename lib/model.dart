@@ -5,6 +5,9 @@ class Model extends ChangeNotifier{
   String name = 'your name';
   int age = 0;
 
+
+  String get getName => name;
+
   changeName(){
     name = 'hamada';
     notifyListeners();

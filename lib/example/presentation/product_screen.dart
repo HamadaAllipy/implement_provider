@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:providerr/example/data/models/product_model.dart';
+import 'package:providerr/example/presentation/checkout_screen.dart';
 import 'package:providerr/example/provider/product_provider.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -12,8 +13,8 @@ class ProductScreen extends StatefulWidget {
 
 class _ProductScreenState extends State<ProductScreen> {
   final List<ProductModel> products = [
-    ProductModel('bmw', 10000),
-    ProductModel('mercedes', 120000),
+    ProductModel('bmw', 50),
+    ProductModel('mercedes', 10),
   ];
 
   @override
@@ -23,7 +24,9 @@ class _ProductScreenState extends State<ProductScreen> {
         title: const Text('Home'),
         actions: [
           IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => const CheckOutScreen()));
+            },
             icon: const Icon(
               Icons.add_shopping_cart,
             ),
@@ -32,7 +35,7 @@ class _ProductScreenState extends State<ProductScreen> {
             padding: const EdgeInsets.all(8.0),
             child: Center(
               child: Text(
-                context.watch<ProductProvider>().countOfProduct.toString(),
+                context.watch<ProductProvider>().getTotal.toString(),
                 style: const TextStyle(fontSize: 18),
               ),
             ),

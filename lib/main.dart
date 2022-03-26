@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:providerr/example/presentation/product_screen.dart';
-import 'package:providerr/example/provider/product_provider.dart';
-import 'package:providerr/providers/model.dart';
-import 'package:providerr/providers/provider_three.dart';
-import 'package:providerr/providers/provider_two.dart';
-import 'package:providerr/test_one.dart';
+import 'package:providerr/example/provider_/presentation/product_screen.dart';
+import 'package:providerr/example/provider_/provider/product_provider.dart';
+import 'package:providerr/example/stateful_builder/stateful_builder.dart';
 
 void main() {
   runApp(const MyApp());
@@ -16,12 +13,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_)=>ProductProvider(),
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: ProductScreen(),
-      ),
-    );
+    return const MaterialApp(home: StateFulBuilder());
   }
 }

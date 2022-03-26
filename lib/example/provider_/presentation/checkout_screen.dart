@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:providerr/example/provider/product_provider.dart';
+import 'package:providerr/example/provider_/provider/product_provider.dart';
 
 class CheckOutScreen extends StatelessWidget {
   const CheckOutScreen({Key? key}) : super(key: key);

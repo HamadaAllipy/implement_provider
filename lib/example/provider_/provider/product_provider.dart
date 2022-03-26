@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:providerr/example/data/models/product_model.dart';
+import 'package:providerr/example/provider_/data/models/product_model.dart';
 
 class ProductProvider extends ChangeNotifier{
 

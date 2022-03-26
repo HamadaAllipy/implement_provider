@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:providerr/example/data/models/product_model.dart';
-import 'package:providerr/example/presentation/checkout_screen.dart';
-import 'package:providerr/example/provider/product_provider.dart';
+import 'package:providerr/example/provider_/data/models/product_model.dart';
+import 'package:providerr/example/provider_/presentation/checkout_screen.dart';
+import 'package:providerr/example/provider_/provider/product_provider.dart';
+
+
+
 
 class ProductScreen extends StatefulWidget {
   const ProductScreen({Key? key}) : super(key: key);

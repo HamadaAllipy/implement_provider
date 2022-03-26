@@ -15,7 +15,10 @@ class _HomeScreenState extends State<HomeScreen> {
     print('HAMADA HAMADA HAMADA');
     return Scaffold(
       appBar: AppBar(
-        title: const Text('StateFullWidget'),
+        title: Text(
+          'StateFullWidget',
+          style: Theme.of(context).textTheme.bodyText1,
+        ),
       ),
       body: Center(
         child: Row(

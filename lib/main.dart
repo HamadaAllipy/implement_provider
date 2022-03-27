@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:providerr/example/inherited_widget/homeScreen.dart';
-import 'package:providerr/example/inherited_widget/provider.dart';
+import 'package:providerr/example/inherited_widget/shop_card/logic/shopping_inherited.dart';
+import 'package:providerr/example/inherited_widget/shop_card2/home_screen2.dart';
+
+import 'example/inherited_widget/shop_card/presentation/home_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -11,8 +13,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Provider(
+    return ShoppingInherited(
       child: const MaterialApp(
+        debugShowCheckedModeBanner: false,
         home: HomeScreen(),
       ),
     );

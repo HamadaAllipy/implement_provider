@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:providerr/example/bloc_example/bloc/counter_bloc.dart';
+import 'package:providerr/example/bloc_example/presentation/home_bloc_screen.dart';
 import 'package:providerr/example/inherited_widget/shop_card/logic/shopping_inherited.dart';
 import 'package:providerr/example/inherited_widget/shop_card2/home_screen2.dart';
 
@@ -13,10 +16,11 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ShoppingInherited(
-      child: const MaterialApp(
-        debugShowCheckedModeBanner: false,
-        home: HomeScreen(),
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: BlocProvider(
+        create: (context)=> CounterBloc(),
+        child: const HomeBlocScreen(),
       ),
     );
   }
